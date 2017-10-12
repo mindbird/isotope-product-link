@@ -1,0 +1,32 @@
+{
+  "name": "mindbird/isotope-product-link",
+  "description": "Add Option to links isotope products in contao backend",
+  "license": "proprietary",
+  "keywords":["contao", "isotope", "link", "products"],
+  "type":"contao-bundle",
+  "authors": [
+    {
+      "name": "mindbird",
+      "email": "info@mindbird.de",
+      "homepage": "http://www.mindbird.de",
+      "role":"Developer"
+    }
+  ],
+  "require": {
+    "contao/core-bundle": "~4.0"
+  },
+  "require-dev": {
+    "contao/manager-plugin": "^2.0"
+  },
+  "conflict": {
+    "contao/manager-plugin": "<2.0 || >=3.0"
+  },
+  "extra": {
+    "contao-manager-plugin": "Mindbird\\IsotopeProductLink\\ContaoManagerPlugin"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mindbird\\IsotopeProductLink\\": "src/"
+    }
+  }
+}
