@@ -1,6 +1,6 @@
 <?php
 
-namespace Mindbird\IsotopeProductLink;
+namespace Mindbird\Isotope\ProductLink;
 
 use Contao\CoreBundle\ContaoCoreBundle;
 use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
@@ -15,7 +15,7 @@ class ContaoManagerPlugin implements BundlePluginInterface
     public function getBundles(ParserInterface $parser)
     {
         return [
-            BundleConfig::create(IsotopeProductLinkBundle::class)->setLoadAfter([ContaoCoreBundle::class])->setReplace(['isotope-product-link'])
+            BundleConfig::create(ProductLinkBundle::class)->setLoadAfter([ContaoCoreBundle::class])->setReplace(['isotope-product-link'])
         ];
     }
 }

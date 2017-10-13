@@ -1,6 +1,6 @@
 services:
     mindbird.picker.isotope_product_provider:
-        class: Mindbird\IsotopeProductLink\Picker\ProductPickerProvider
+        class: Mindbird\Isotope\ProductLink\Picker\ProductPickerProvider
         public: false
         arguments:
             - "@knp_menu.factory"

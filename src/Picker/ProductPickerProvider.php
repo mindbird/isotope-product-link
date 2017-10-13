@@ -1,6 +1,6 @@
 <?php
 
-namespace Mindbird\IsotopeProductLink\Picker;
+namespace Mindbird\Isotope\ProductLink\Picker;
 
 use Contao\CoreBundle\Picker\AbstractPickerProvider;
 use Contao\CoreBundle\Picker\DcaPickerProviderInterface;

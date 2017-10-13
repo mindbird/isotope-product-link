@@ -22,11 +22,11 @@
     "contao/manager-plugin": "<2.0 || >=3.0"
   },
   "extra": {
-    "contao-manager-plugin": "Mindbird\\IsotopeProductLink\\ContaoManagerPlugin"
+    "contao-manager-plugin": "Mindbird\\Isotope\\ProductLink\\ContaoManagerPlugin"
   },
   "autoload": {
     "psr-4": {
-      "Mindbird\\IsotopeProductLink\\": "src/"
+      "Mindbird\\Isotope\\ProductLink\\": "src/"
     }
   }
 }
