@@ -1,29 +1,6 @@
 services:
-    contao.picker.page_provider:
+    contao.picker.isotope_product_provider:
         class: Mindbird\IsotopeProductLink\Picker\ProductPickerProvider
-        public: false
-        arguments:
-            - "@knp_menu.factory"
-            - "@router"
-        calls:
-            - [setTokenStorage, ["@security.token_storage"]]
-        tags:
-            - { name: contao.picker_provider }
-
-    contao.picker.file_provider:
-        class: Contao\CoreBundle\Picker\FilePickerProvider
-        public: false
-        arguments:
-            - "@knp_menu.factory"
-            - "@router"
-            - "%contao.upload_path%"
-        calls:
-            - [setTokenStorage, ["@security.token_storage"]]
-        tags:
-            - { name: contao.picker_provider, priority: 160 }
-
-    contao.picker.article_provider:
-        class: Contao\CoreBundle\Picker\ArticlePickerProvider
         public: false
         arguments:
             - "@knp_menu.factory"

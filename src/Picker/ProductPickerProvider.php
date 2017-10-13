@@ -14,7 +14,7 @@ class ProductPickerProvider extends AbstractPickerProvider implements DcaPickerP
      */
     protected function getRouteParameters(\Contao\CoreBundle\Picker\PickerConfig $config = null)
     {
-        // TODO: Implement getRouteParameters() method.
+        return ['do' => 'iso_products'];
     }
 
     /**
@@ -24,7 +24,7 @@ class ProductPickerProvider extends AbstractPickerProvider implements DcaPickerP
      */
     public function getDcaTable()
     {
-        // TODO: Implement getDcaTable() method.
+        return 'tl_isotope_products';
     }
 
     /**
@@ -36,7 +36,26 @@ class ProductPickerProvider extends AbstractPickerProvider implements DcaPickerP
      */
     public function getDcaAttributes(\Contao\CoreBundle\Picker\PickerConfig $config)
     {
-        // TODO: Implement getDcaAttributes() method.
+        $value = $config->getValue();
+        $attributes = ['fieldType' => 'radio'];
+
+        if ('iso_products' === $config->getContext()) {
+            if ($fieldType = $config->getExtra('fieldType')) {
+                $attributes['fieldType'] = $fieldType;
+            }
+
+            if ($value) {
+                $attributes['value'] = array_map('intval', explode(',', $value));
+            }
+
+            return $attributes;
+        }
+
+        if ($value && false !== strpos($value, '{{link_url::')) {
+            $attributes['value'] = str_replace(['{{link_url::', '}}'], '', $value);
+        }
+
+        return $attributes;
     }
 
     /**
@@ -49,7 +68,11 @@ class ProductPickerProvider extends AbstractPickerProvider implements DcaPickerP
      */
     public function convertDcaValue(\Contao\CoreBundle\Picker\PickerConfig $config, $value)
     {
-        // TODO: Implement convertDcaValue() method.
+        if ('iso_products' === $config->getContext()) {
+            return (int) $value;
+        }
+
+        return '{{link_url::'.$value.'}}';
     }
 
     /**
@@ -59,7 +82,7 @@ class ProductPickerProvider extends AbstractPickerProvider implements DcaPickerP
      */
     public function getName()
     {
-        return 'productPicker';
+        return 'isotopeProductPicker';
     }
 
     /**
@@ -71,9 +94,7 @@ class ProductPickerProvider extends AbstractPickerProvider implements DcaPickerP
      */
     public function supportsContext($context)
     {
-        print 'supportsContext';
-        var_dump($context);
-        // TODO: Implement supportsContext() method.
+        return in_array($context, ['iso_products', 'link'], true) && $this->getUser()->hasAccess('iso_products', 'modules');
     }
 
     /**
@@ -85,6 +106,10 @@ class ProductPickerProvider extends AbstractPickerProvider implements DcaPickerP
      */
     public function supportsValue(\Contao\CoreBundle\Picker\PickerConfig $config)
     {
-        // TODO: Implement supportsValue() method.
+        if ('iso_products' === $config->getContext()) {
+            return is_numeric($config->getValue());
+        }
+
+        return false !== strpos($config->getValue(), '{{link_url::');
     }
 }
