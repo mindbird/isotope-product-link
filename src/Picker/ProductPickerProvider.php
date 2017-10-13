@@ -1,18 +1,21 @@
 <?php
 
+namespace Mindbird\IsotopeProductLink\Picker;
+
 use Contao\CoreBundle\Picker\AbstractPickerProvider;
 use Contao\CoreBundle\Picker\DcaPickerProviderInterface;
+use Contao\CoreBundle\Picker\PickerConfig;
 
 class ProductPickerProvider extends AbstractPickerProvider implements DcaPickerProviderInterface {
 
     /**
      * Returns the routing parameters for the back end picker.
      *
-     * @param \Contao\CoreBundle\Picker\PickerConfig|null $config
+     * @param PickerConfig|null $config
      *
      * @return array
      */
-    protected function getRouteParameters(\Contao\CoreBundle\Picker\PickerConfig $config = null)
+    protected function getRouteParameters(PickerConfig $config = null)
     {
         return ['do' => 'iso_products'];
     }
@@ -30,11 +33,11 @@ class ProductPickerProvider extends AbstractPickerProvider implements DcaPickerP
     /**
      * Returns the attributes for the DataContainer.
      *
-     * @param \Contao\CoreBundle\Picker\PickerConfig $config
+     * @param PickerConfig $config
      *
      * @return array
      */
-    public function getDcaAttributes(\Contao\CoreBundle\Picker\PickerConfig $config)
+    public function getDcaAttributes(PickerConfig $config)
     {
         $value = $config->getValue();
         $attributes = ['fieldType' => 'radio'];
@@ -61,12 +64,12 @@ class ProductPickerProvider extends AbstractPickerProvider implements DcaPickerP
     /**
      * Converts the DCA value for the picker selection.
      *
-     * @param \Contao\CoreBundle\Picker\PickerConfig $config
+     * @param PickerConfig $config
      * @param mixed $value
      *
      * @return mixed
      */
-    public function convertDcaValue(\Contao\CoreBundle\Picker\PickerConfig $config, $value)
+    public function convertDcaValue(PickerConfig $config, $value)
     {
         if ('iso_products' === $config->getContext()) {
             return (int) $value;
@@ -100,11 +103,11 @@ class ProductPickerProvider extends AbstractPickerProvider implements DcaPickerP
     /**
      * Returns whether the picker supports the given value.
      *
-     * @param \Contao\CoreBundle\Picker\PickerConfig $config
+     * @param PickerConfig $config
      *
      * @return bool
      */
-    public function supportsValue(\Contao\CoreBundle\Picker\PickerConfig $config)
+    public function supportsValue(PickerConfig $config)
     {
         if ('iso_products' === $config->getContext()) {
             return is_numeric($config->getValue());
