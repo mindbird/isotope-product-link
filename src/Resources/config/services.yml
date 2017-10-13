@@ -1,10 +1,5 @@
 services:
-    _instanceof:
-        Contao\CoreBundle\Framework\FrameworkAwareInterface:
-            calls:
-                - ["setFramework", ["@contao.framework"]]
-
-    isotope_product_link.picker.isotope_product_provider:
+    mindbird.picker.isotope_product_provider:
         class: Mindbird\IsotopeProductLink\Picker\ProductPickerProvider
         public: false
         arguments:
