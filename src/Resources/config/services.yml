@@ -1,6 +1,11 @@
 services:
-    mindbird.xyz.abc_prodiver:
+    mindbird.picker.isotope_product_provider:
         class: Mindbird\Isotope\ProductLink\Picker\ProductPickerProvider
+        public: false
         arguments:
             - "@knp_menu.factory"
             - "@router"
+        calls:
+            - [setTokenStorage, ["@security.token_storage"]]
+        tags:
+            - { name: contao.picker_provider }
